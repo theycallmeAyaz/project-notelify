@@ -79,7 +79,19 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ note, isNew = false }) => {
   return (
     <div className="h-full flex flex-col bg-surface">
       <div className="flex items-center justify-between p-4 border-b border-neutral-light bg-surface">
-        <button className="btn p-2 md:hidden" aria-label="Back to notes">
+        <button 
+          className="btn p-2 md:hidden" 
+          aria-label="Back to notes"
+          onClick={() => {
+            if (note) {
+              // If editing existing note, go back to list
+              window.history.back();
+            } else {
+              // If creating new note, cancel creation
+              window.history.back();
+            }
+          }}
+        >
           <ArrowLeft className="h-5 w-5" />
         </button>
         <div className="flex space-x-2">

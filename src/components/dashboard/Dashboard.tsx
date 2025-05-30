@@ -33,7 +33,9 @@ const Dashboard: React.FC = () => {
   return (
     <div className="flex h-[calc(100vh-8rem)] overflow-hidden bg-background">
       {/* Sidebar */}
-      <div className="w-full md:w-72 lg:w-80 bg-surface border-r border-neutral-light flex flex-col">
+      <div className={`w-full md:w-72 lg:w-80 bg-surface border-r border-neutral-light flex flex-col ${
+        selectedNoteId || isCreatingNote ? 'hidden md:flex' : 'flex'
+      }`}>
         <div className="p-4 border-b border-neutral-light">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -90,7 +92,9 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Main content */}
-      <div className="hidden md:block flex-grow bg-background">
+      <div className={`flex-grow bg-background ${
+        selectedNoteId || isCreatingNote ? 'flex' : 'hidden md:block'
+      }`}>
         {selectedNote ? (
           <NoteEditor note={selectedNote} />
         ) : isCreatingNote ? (
